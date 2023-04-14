@@ -15,8 +15,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
