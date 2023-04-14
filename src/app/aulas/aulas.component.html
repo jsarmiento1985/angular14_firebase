@@ -1,0 +1,74 @@
+<h1>Página aulas :: {{title}}</h1>
+
+<p>mi nombre es {{nombre| lowercase}}</p>
+<p>mi apellido es {{apellido| uppercase}} tengo {{15+1}} años</p>
+<p>100 * 5 = {{100*5}}</p>
+<p>Esta es una funcion devuelve :: {{ suma() }}</p>
+
+<input [type]="xtipo" name="xnombre" [value]="xvalor" [disabled]="xpermiso"> 
+<img [src]="ximg" alt="">
+<ul>
+    <li *ngFor="let col of colores">
+        {{col}}
+    </li>
+</ul>
+
+<ul>
+    <li *ngFor="let pa of paises">
+        {{pa.id}} {{pa.nombre}}
+    </li>
+</ul><br>
+<a [href]="xenlace">Buscador</a><br><br>
+
+<button [disabled]="xper"> Ejecutar</button> <br>
+
+<p [className]="xclase">HOLA MUNDO</p>
+
+<p [ngClass] = "xclase2">Este es un segundo texto</p>
+
+<ul>
+    <li *ngFor = "let fruta of frutas; let i =index">
+        {{i+1}}.{{fruta}}
+    </li>
+</ul>
+
+<div *ngIf = "movil.length == 0 ; else resultado3">
+    <p>NO existe movilidades para listar..</p>
+</div>
+
+<!--<ul>
+    <li *ngFor = "let mov of movil; let i =index">
+        {{i+1}}.{{mov.placa}} {{mov.modelo}} {{mov.color}}
+    </li>
+</ul>-->
+
+
+<select>
+    <option value = "" *ngFor = "let fru of frutas">
+            {{fru}}
+    </option>
+</select>
+
+
+<h2>*ngif</h2>
+
+<div *ngIf ="xvalor2">
+    <p>Bienvenidos a este curso ....</p>
+
+</div>
+
+<p *ngIf = "xdato; else resultado2">
+ Si el valor es VERDAD
+</p>
+
+<ng-template #resultado2>
+Si el valor es FALSO
+</ng-template>
+
+<ng-template #resultado3>
+   <ul>
+    <li *ngFor = "let mov of movil; let i =index">
+        {{i+1}}.{{mov.placa}} {{mov.modelo}} {{mov.color}}
+    </li>
+</ul>
+ </ng-template>
