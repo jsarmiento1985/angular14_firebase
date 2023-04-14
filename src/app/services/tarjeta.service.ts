@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { TarjetaCredito } from '../models/TarjetaCredito';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -8,13 +9,38 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 })
 export class TarjetaService {
 
-  constructor(private firebase: AngularFirestore) {}
+  private tarjeta$ = new Subject<any>;
+
+  constructor(private firestore: AngularFirestore) {}
 
   guardarTarjeta(tarjeta: TarjetaCredito):Promise<any>{
-    return this.firebase.collection('tarjetas').add(tarjeta);
-    
+    return this.firestore.collection('tarjetas').add(tarjeta);
+  }
 
+  obtenerTarjetas():Observable<any>{
+   return  this.firestore.collection('tarjetas', ref =>ref.orderBy('fechaCreacion','desc')).snapshotChanges();
   }
   
+  editarTarjeta(id: string, tarjeta: any): Promise<any>{
+    return this.firestore.collection('tarjetas').doc(id).update(tarjeta);
+  }
+
+  eliminarTarjeta(id: string):Promise<any>{
+    return this.firestore.collection('tarjetas').doc(id).delete();
+  }
+
+  addTarjetaEdit(tarjeta: TarjetaCredito){
+    this.tarjeta$.next(tarjeta);
+  }
+
+  getTarjetaEdit(): Observable<TarjetaCredito>{
+
+    return this.tarjeta$.asObservable();
+  }
+
+
+
+
+
 }
 

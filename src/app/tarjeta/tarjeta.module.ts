@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { ToastrModule } from 'ngx-toastr';
 import { TarjetaRoutingModule } from './tarjeta-routing.module';
 import { TarjetaComponent } from './tarjeta.component';
 import { CrearTarjetaComponent } from './crear-tarjeta/crear-tarjeta.component';
@@ -19,6 +19,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     TarjetaRoutingModule,
     ReactiveFormsModule,
+     ToastrModule.forRoot(), // ToastrModule added
     FormsModule
   ]
 })
